@@ -27,7 +27,7 @@ struct ComicsManager {
                     return
                 } else {
                     if let safeData = data {
-                        self.parseJSON(APIData: safeData)
+                        self.parseJSON(ComicsData: safeData)
                     }
                 }
             })
@@ -36,10 +36,10 @@ struct ComicsManager {
         }
     }
     
-    func parseJSON(APIData: Data) {
+    func parseJSON(comicsData: Data) {
         let decoder = JSONDecoder()
         do {
-            let decodedData = try decoder.decode(APIResult.self, from: APIData)
+            let decodedData = try decoder.decode(ComicsData.self, from: comicsData)
             
             print(decodedData.status)
 

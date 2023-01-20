@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		BD286A6A297AAA71000999D1 /* APIData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD286A69297AAA71000999D1 /* APIData.swift */; };
+		BD286A6A297AAA71000999D1 /* ComicsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD286A69297AAA71000999D1 /* ComicsData.swift */; };
 		BD286A6E297AB253000999D1 /* ComicsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD286A6D297AB253000999D1 /* ComicsManager.swift */; };
 		BD286A71297B01AD000999D1 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = BD286A70297B01AD000999D1 /* .gitignore */; };
 		BDE7F954297734A500BFC3F8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE7F953297734A500BFC3F8 /* AppDelegate.swift */; };
@@ -19,7 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		BD286A69297AAA71000999D1 /* APIData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIData.swift; sourceTree = "<group>"; };
+		BD286A69297AAA71000999D1 /* ComicsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicsData.swift; sourceTree = "<group>"; };
 		BD286A6D297AB253000999D1 /* ComicsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComicsManager.swift; sourceTree = "<group>"; };
 		BD286A70297B01AD000999D1 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		BDE7F950297734A500BFC3F8 /* MarvelComics.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MarvelComics.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -47,7 +47,7 @@
 			isa = PBXGroup;
 			children = (
 				BD286A6D297AB253000999D1 /* ComicsManager.swift */,
-				BD286A69297AAA71000999D1 /* APIData.swift */,
+				BD286A69297AAA71000999D1 /* ComicsData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -157,7 +157,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BDE7F958297734A500BFC3F8 /* ViewController.swift in Sources */,
-				BD286A6A297AAA71000999D1 /* APIData.swift in Sources */,
+				BD286A6A297AAA71000999D1 /* ComicsData.swift in Sources */,
 				BD286A6E297AB253000999D1 /* ComicsManager.swift in Sources */,
 				BDE7F954297734A500BFC3F8 /* AppDelegate.swift in Sources */,
 				BDE7F956297734A500BFC3F8 /* SceneDelegate.swift in Sources */,

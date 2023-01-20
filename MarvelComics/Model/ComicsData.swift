@@ -5,7 +5,7 @@
 //  Created by Dawid Łabno on 20/01/2023.
 //
 
-struct APIResult: Decodable {
+struct ComicsData: Decodable {
     let status: String
     let data: Data
 }
