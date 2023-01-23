@@ -6,45 +6,40 @@
 //
 
 import UIKit
+import SDWebImage
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, ComicsManagerDelegate {
     
     var comicsManager = ComicsManager()
     @IBOutlet weak var tableView: UITableView!
     
+    var titleLabel: String?
+    var itemsCounter: Int?
+    var comics: [ComicModel] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        comicsManager.delegate = self
         tableView.dataSource = self
         tableView.delegate = self
+        
         self.navigationController?.navigationBar.prefersLargeTitles = true
         
-        comicsManager.fetchComics()
+        comicsManager.performRequest()
     }
     
-//    func getPosts() {
-//        let urlString = "http://gateway.marvel.com/v1/public/comics?ts=1&apikey=a918e5981c403ce82cea3d4209804351&hash=1882d3b7e252f80ccda13a75a0a428ed"
-//        guard let url = URL(string: urlString) else {
-//            print("This is an invalid URL")
-//            return
-//        }
-//        let session = URLSession.shared.dataTask(with: url) {
-//            data, response, error in
-//            if let error = error {
-//                print("There was an error \(error.localizedDescription)")
-//            } else {
-////                let jsonRes = try? JSONSerialization.jsonObject(with: data!, options: [])
-////                print("The response: \(jsonRes)")
-//                let comic = try? JSONDecoder().decode(ComicsData.self, from: data!)
-//                print("Output: \(comic?.status)")
-//            }
-//        }.resume()
-//    }
+    func didUpdateList(_ comicsArray: [ComicModel]) {
+        DispatchQueue.main.async {
+            self.comics = comicsArray
+            self.tableView.reloadData()
+        }
+    }
 }
 
 extension ViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 5
+        return comics.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -53,19 +48,17 @@ extension ViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ComicsTableViewCell") as! ComicsTableViewCell
-        cell.cellImageView.image = #imageLiteral(resourceName: "bd22b7c5b6d96d2fd75f65122139df07--marvel-comic-books-marvel-comics.jpg")
-        cell.cellTitle.text = "Avengers #39"
-        cell.cellAuthor.text = "Written by Jason Aaron"
-        cell.cellDescription.text = "ENTER THE PHOENIX PROLOGUE! In the harsh, primordial world of One Million B.C.E, early humans who are different are left in the Burnt Place to die."
+        cell.cellImageView.sd_setImage(with: comics[indexPath.section].imageUrl, completed: nil)
+        cell.cellTitle.text = comics[indexPath.section].title
+        cell.cellAuthor.text = comics[indexPath.section].authors
+        cell.cellDescription.text = comics[indexPath.section].description
         return cell
     }
-    
-    
 }
 
 extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("Selected cell")
+        print(comics[indexPath.section].authors)
     }
 }
 
