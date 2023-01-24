@@ -8,7 +8,7 @@
 import UIKit
 import SDWebImage
 
-class ViewController: UIViewController, ComicsManagerDelegate {
+class ViewController: UIViewController {
     
     var comicsManager = ComicsManager()
     @IBOutlet weak var tableView: UITableView!
@@ -28,13 +28,15 @@ class ViewController: UIViewController, ComicsManagerDelegate {
         comicsManager.performRequest()
     }
     
-    func didUpdateList(_ comicsArray: [ComicModel]) {
-        DispatchQueue.main.async {
-            self.comics = comicsArray
-            self.tableView.reloadData()
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showDetails" {
+            let destinationVC = segue.destination as! DetailViewController
+            destinationVC.imgUrl = (sender as! URL)
         }
     }
 }
+
+//MARK: - UITableViewDataSource
 
 extension ViewController: UITableViewDataSource {
     
@@ -56,11 +58,27 @@ extension ViewController: UITableViewDataSource {
     }
 }
 
+//MARK: - UITableViewDelegate
+
 extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(comics[indexPath.section].authors)
+        let selectedItem = comics[indexPath.section].imageUrl
+        self.performSegue(withIdentifier: "showDetails", sender: selectedItem)
     }
 }
+
+//MARK: - ComicsManagerDelegate
+
+extension ViewController: ComicsManagerDelegate {
+    func didUpdateList(_ comicsArray: [ComicModel]) {
+        DispatchQueue.main.async {
+            self.comics = comicsArray
+            self.tableView.reloadData()
+        }
+    }
+}
+
+//MARK: - ComicsTableViewCell
 
 class ComicsTableViewCell: UITableViewCell {
     
