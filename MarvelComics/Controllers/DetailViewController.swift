@@ -23,6 +23,8 @@ class DetailViewController: UIViewController {
     var comic: ComicModel?
     
     var imgUrl: URL?
+    var isActive = false
+    var customView: CustomView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,11 +36,26 @@ class DetailViewController: UIViewController {
             comicDesc.text = comicPreview.description
         }
         
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap))
+        smallDescView.addGestureRecognizer(tap)
+        
         navigationItem.backBarButtonItem?.image = UIImage(systemName: "arrow.backward")
         navigationItem.backButtonDisplayMode = .minimal
         
         smallDescView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         smallDescView.layer.cornerRadius = 25
         grabber.layer.cornerRadius = 5
+    }
+    
+    @objc func handleTap() {
+        isActive = !isActive
+        if isActive {
+            smallDescView.removeFromSuperview()
+            customView = CustomView()
+            view.addSubview(customView!)
+        } else {
+            customView!.removeFromSuperview()
+            view.addSubview(smallDescView)
+        }
     }
 }
