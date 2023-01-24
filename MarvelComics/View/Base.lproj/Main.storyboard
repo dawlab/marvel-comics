@@ -198,7 +198,10 @@
                     </view>
                     <navigationItem key="navigationItem" id="NPA-Nl-mif"/>
                     <connections>
+                        <outlet property="comicAuthors" destination="BTE-eR-k4X" id="USH-IY-ODh"/>
+                        <outlet property="comicDesc" destination="7Db-Lb-8Be" id="P3k-SB-iZC"/>
                         <outlet property="comicImageView" destination="cMF-R1-fdI" id="cOG-77-vQm"/>
+                        <outlet property="comicTitle" destination="xpa-vV-tpc" id="C7b-C2-0pM"/>
                         <outlet property="grabber" destination="f6p-n2-OSO" id="ZuA-v7-bXM"/>
                         <outlet property="smallDescView" destination="TdC-1L-Caa" id="cmp-nZ-OBD"/>
                     </connections>

@@ -31,7 +31,7 @@ class ViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetails" {
             let destinationVC = segue.destination as! DetailViewController
-            destinationVC.imgUrl = (sender as! URL)
+            destinationVC.comic = (sender as! ComicModel)
         }
     }
 }
@@ -62,7 +62,7 @@ extension ViewController: UITableViewDataSource {
 
 extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedItem = comics[indexPath.section].imageUrl
+        let selectedItem = comics[indexPath.section]
         self.performSegue(withIdentifier: "showDetails", sender: selectedItem)
     }
 }

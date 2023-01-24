@@ -12,16 +12,27 @@ import FloatingPanel
 class DetailViewController: UIViewController {
 
     @IBOutlet weak var comicImageView: UIImageView!
-    
     @IBOutlet weak var smallDescView: UIView!
-    
     @IBOutlet weak var grabber: UIView!
+    
+    
+    @IBOutlet weak var comicTitle: UILabel!
+    @IBOutlet weak var comicAuthors: UILabel!
+    @IBOutlet weak var comicDesc: UILabel!
+    
+    var comic: ComicModel?
     
     var imgUrl: URL?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        comicImageView.sd_setImage(with: imgUrl)
+        
+        if let comicPreview = comic {
+            comicImageView.sd_setImage(with: comicPreview.imageUrl)
+            comicTitle.text = comicPreview.title
+            comicAuthors.text = comicPreview.authors
+            comicDesc.text = comicPreview.description
+        }
         
         navigationItem.backBarButtonItem?.image = UIImage(systemName: "arrow.backward")
         navigationItem.backButtonDisplayMode = .minimal
