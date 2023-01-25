@@ -10,39 +10,77 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CustomView" customModule="MarvelComics" customModuleProvider="target">
             <connections>
-                <outlet property="contenView" destination="iN0-l3-epB" id="deX-wt-8e7"/>
+                <outlet property="ContentView" destination="iN0-l3-epB" id="hOQ-LS-bp9"/>
+                <outlet property="authors" destination="2A5-6J-1ka" id="TEt-BV-d9y"/>
+                <outlet property="desc" destination="jJH-Kd-fqc" id="atv-Ba-OmH"/>
+                <outlet property="grabber" destination="SdW-FK-Bza" id="4ii-M2-MhC"/>
+                <outlet property="title" destination="42g-aU-jL1" id="Y4u-IX-a02"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="CustomView" customModule="MarvelComics" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="393" height="579"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="355"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SdW-FK-Bza">
-                    <rect key="frame" x="146" y="7" width="101" height="7"/>
-                    <color key="backgroundColor" systemColor="systemGray4Color"/>
+                    <rect key="frame" x="156.66666666666666" y="7" width="100.99999999999997" height="7"/>
+                    <color key="backgroundColor" systemColor="systemGray5Color"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="101" id="RqG-f9-ZPt"/>
                         <constraint firstAttribute="height" constant="7" id="ax0-s6-h5E"/>
                     </constraints>
                 </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comic Book Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="42g-aU-jL1">
+                    <rect key="frame" x="19" y="33" width="376" height="24"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Authors" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2A5-6J-1ka">
+                    <rect key="frame" x="19.000000000000004" y="59" width="50.333333333333343" height="17"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="17" id="E8f-6O-ysy"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="12" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jJH-Kd-fqc">
+                    <rect key="frame" x="18" y="93" width="378" height="228"/>
+                    <string key="text">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here'</string>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="42g-aU-jL1" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="19" id="2mC-lT-M0x"/>
+                <constraint firstItem="jJH-Kd-fqc" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="18" id="6iG-VB-WLC"/>
+                <constraint firstItem="42g-aU-jL1" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="19" id="H67-CZ-zSD"/>
+                <constraint firstItem="jJH-Kd-fqc" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="KE6-Jz-1V5"/>
+                <constraint firstItem="jJH-Kd-fqc" firstAttribute="top" secondItem="2A5-6J-1ka" secondAttribute="bottom" constant="17" id="Owh-QD-cgw"/>
+                <constraint firstAttribute="trailing" secondItem="42g-aU-jL1" secondAttribute="trailing" constant="19" id="Qsm-DB-nJt"/>
+                <constraint firstItem="42g-aU-jL1" firstAttribute="top" secondItem="SdW-FK-Bza" secondAttribute="bottom" constant="19" id="Ugi-2i-c3P"/>
+                <constraint firstItem="2A5-6J-1ka" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="19" id="Ujg-8w-U7Q"/>
+                <constraint firstItem="2A5-6J-1ka" firstAttribute="top" secondItem="42g-aU-jL1" secondAttribute="bottom" constant="2" id="YzY-yi-Rqh"/>
+                <constraint firstItem="2A5-6J-1ka" firstAttribute="leading" secondItem="42g-aU-jL1" secondAttribute="leading" id="Zcd-Wl-8GO"/>
                 <constraint firstItem="SdW-FK-Bza" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="7" id="aMD-UV-ZVe"/>
                 <constraint firstItem="SdW-FK-Bza" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="rVr-JC-eG4"/>
+                <constraint firstAttribute="bottom" secondItem="jJH-Kd-fqc" secondAttribute="bottom" constant="34" id="uHp-3K-zhh"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="jJH-Kd-fqc" secondAttribute="trailing" constant="18" id="xJU-1D-TT7"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="113.74045801526717" y="65.845070422535215"/>
+            <point key="canvasLocation" x="112.97709923664122" y="65.140845070422543"/>
         </view>
     </objects>
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
-        <systemColor name="systemGray4Color">
-            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <systemColor name="systemGray5Color">
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

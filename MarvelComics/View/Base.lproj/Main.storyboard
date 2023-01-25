@@ -106,7 +106,7 @@
             </objects>
             <point key="canvasLocation" x="464" y="1432"/>
         </scene>
-        <!--Detail View Controller-->
+        <!--Details-->
         <scene sceneID="mnA-c5-4DL">
             <objects>
                 <viewController id="0xD-6S-EfQ" customClass="DetailViewController" customModule="MarvelComics" customModuleProvider="target" sceneMemberID="viewController">
@@ -164,6 +164,7 @@
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
+                                    <constraint firstItem="7Db-Lb-8Be" firstAttribute="leading" secondItem="TdC-1L-Caa" secondAttribute="leading" constant="19" id="4Hm-zg-mZk"/>
                                     <constraint firstAttribute="height" constant="189" id="4Mk-WW-vkf"/>
                                     <constraint firstItem="f6p-n2-OSO" firstAttribute="centerX" secondItem="TdC-1L-Caa" secondAttribute="centerX" id="5M7-CH-sCC"/>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="BTE-eR-k4X" secondAttribute="trailing" constant="20" symbolic="YES" id="DCo-G7-bxa"/>
@@ -174,15 +175,20 @@
                                     <constraint firstItem="BTE-eR-k4X" firstAttribute="top" secondItem="xpa-vV-tpc" secondAttribute="bottom" constant="8" id="gRz-lm-rRJ"/>
                                     <constraint firstItem="xpa-vV-tpc" firstAttribute="top" secondItem="f6p-n2-OSO" secondAttribute="bottom" constant="19" id="gVC-My-Jml"/>
                                     <constraint firstItem="f6p-n2-OSO" firstAttribute="top" secondItem="TdC-1L-Caa" secondAttribute="top" constant="8" id="vZM-35-d7R"/>
+                                    <constraint firstAttribute="trailing" secondItem="7Db-Lb-8Be" secondAttribute="trailing" constant="19" id="vuh-CP-IfL"/>
                                     <constraint firstItem="xpa-vV-tpc" firstAttribute="leading" secondItem="7Db-Lb-8Be" secondAttribute="leading" id="xOX-1Q-dsV"/>
                                     <constraint firstItem="7Db-Lb-8Be" firstAttribute="centerX" secondItem="f6p-n2-OSO" secondAttribute="centerX" id="z6G-Tx-Y5l"/>
                                 </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pnz-6Q-Gc5" customClass="CustomView" customModule="MarvelComics" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="369" width="414" height="355"/>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="xKc-f2-BQw"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstAttribute="bottom" secondItem="Pnz-6Q-Gc5" secondAttribute="bottom" constant="172" id="1KH-vP-rqf"/>
                             <constraint firstItem="cMF-R1-fdI" firstAttribute="trailing" secondItem="xKc-f2-BQw" secondAttribute="trailing" id="GMT-As-ovF"/>
                             <constraint firstItem="3hs-Wo-Ex0" firstAttribute="top" secondItem="cMF-R1-fdI" secondAttribute="bottom" constant="18" id="Jrh-Q4-0NP"/>
                             <constraint firstItem="cMF-R1-fdI" firstAttribute="bottom" secondItem="xKc-f2-BQw" secondAttribute="bottom" constant="-99" id="Lsq-6h-PvW"/>
@@ -192,22 +198,26 @@
                             <constraint firstItem="TdC-1L-Caa" firstAttribute="trailing" secondItem="xKc-f2-BQw" secondAttribute="trailing" id="c7m-TG-16I"/>
                             <constraint firstItem="cMF-R1-fdI" firstAttribute="top" secondItem="eeR-Tb-y4D" secondAttribute="top" constant="92" id="chW-lj-zEe"/>
                             <constraint firstItem="cMF-R1-fdI" firstAttribute="leading" secondItem="xKc-f2-BQw" secondAttribute="leading" id="g7F-II-V1P"/>
+                            <constraint firstItem="Pnz-6Q-Gc5" firstAttribute="top" secondItem="xKc-f2-BQw" secondAttribute="top" constant="277" id="kEl-X4-KUf"/>
                             <constraint firstItem="xKc-f2-BQw" firstAttribute="bottom" secondItem="3hs-Wo-Ex0" secondAttribute="bottom" constant="19" id="sRf-OE-uw5"/>
+                            <constraint firstItem="Pnz-6Q-Gc5" firstAttribute="leading" secondItem="xKc-f2-BQw" secondAttribute="leading" id="wwI-Ae-PrF"/>
+                            <constraint firstItem="Pnz-6Q-Gc5" firstAttribute="trailing" secondItem="xKc-f2-BQw" secondAttribute="trailing" id="x2W-Td-EFA"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="NPA-Nl-mif"/>
+                    <navigationItem key="navigationItem" title="Details" largeTitleDisplayMode="never" id="NPA-Nl-mif"/>
                     <connections>
                         <outlet property="comicAuthors" destination="BTE-eR-k4X" id="USH-IY-ODh"/>
                         <outlet property="comicDesc" destination="7Db-Lb-8Be" id="P3k-SB-iZC"/>
                         <outlet property="comicImageView" destination="cMF-R1-fdI" id="cOG-77-vQm"/>
                         <outlet property="comicTitle" destination="xpa-vV-tpc" id="C7b-C2-0pM"/>
+                        <outlet property="customView" destination="Pnz-6Q-Gc5" id="aFU-pS-KsM"/>
                         <outlet property="grabber" destination="f6p-n2-OSO" id="ZuA-v7-bXM"/>
                         <outlet property="smallDescView" destination="TdC-1L-Caa" id="cmp-nZ-OBD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wzx-Y0-T9g" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="464" y="2154"/>
+            <point key="canvasLocation" x="463.768115942029" y="2153.5714285714284"/>
         </scene>
         <!--Search comics-->
         <scene sceneID="8nf-4z-Tzi">

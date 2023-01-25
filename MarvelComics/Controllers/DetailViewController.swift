@@ -7,10 +7,9 @@
 
 import UIKit
 import SDWebImage
-import FloatingPanel
 
 class DetailViewController: UIViewController {
-
+    
     @IBOutlet weak var comicImageView: UIImageView!
     @IBOutlet weak var smallDescView: UIView!
     @IBOutlet weak var grabber: UIView!
@@ -20,42 +19,81 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var comicAuthors: UILabel!
     @IBOutlet weak var comicDesc: UILabel!
     
+    
+    @IBOutlet weak var customView: CustomView!
+    
     var comic: ComicModel?
     
     var imgUrl: URL?
     var isActive = false
-    var customView: CustomView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        customView.isHidden = true
         
-        if let comicPreview = comic {
-            comicImageView.sd_setImage(with: comicPreview.imageUrl)
-            comicTitle.text = comicPreview.title
-            comicAuthors.text = comicPreview.authors
-            comicDesc.text = comicPreview.description
-        }
-        
-        let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap))
-        smallDescView.addGestureRecognizer(tap)
-        
-        navigationItem.backBarButtonItem?.image = UIImage(systemName: "arrow.backward")
-        navigationItem.backButtonDisplayMode = .minimal
-        
+        showData()
+        AddGestureRecognizers()
+        prepareSmallDescView()
+    }
+    
+    func prepareSmallDescView() {
         smallDescView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         smallDescView.layer.cornerRadius = 25
         grabber.layer.cornerRadius = 5
     }
     
+    func showData() {
+        if let comicPreview = comic {
+            //Small view data
+            comicImageView.sd_setImage(with: comicPreview.imageUrl)
+            comicTitle.text = comicPreview.title
+            comicAuthors.text = comicPreview.authors
+            comicDesc.text = comicPreview.description
+            //Full view data
+            customView.title.text = comicPreview.title
+            customView.authors.text = comicPreview.authors
+            customView.desc.text = comicPreview.description
+        }
+    }
+    
+    func AddGestureRecognizers() {
+        //        Add tap gesture recognizer
+        let smallDescViewTap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap))
+        let customViewTap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap))
+        smallDescView.addGestureRecognizer(smallDescViewTap)
+        smallDescView.isUserInteractionEnabled = true
+        customView.addGestureRecognizer(customViewTap)
+        customView.isUserInteractionEnabled = true
+        
+        //        Add swipe up gesture recognizer
+        let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(self.handleSwipeUp))
+        swipeUp.direction = .up
+        smallDescView.addGestureRecognizer(swipeUp)
+        
+        //        Add swipe down gesture recognizer
+        let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(self.handleSwipeDown))
+        swipeDown.direction = .down
+        customView.addGestureRecognizer(swipeDown)
+    }
+    
     @objc func handleTap() {
         isActive = !isActive
         if isActive {
-            smallDescView.removeFromSuperview()
-            customView = CustomView()
-            view.addSubview(customView!)
+            smallDescView.isHidden = true
+            customView.isHidden = false
         } else {
-            customView!.removeFromSuperview()
-            view.addSubview(smallDescView)
+            customView.isHidden = true
+            smallDescView.isHidden = false
         }
+    }
+    
+    @objc func handleSwipeUp(_ sender: UISwipeGestureRecognizer) {
+        smallDescView.isHidden = true
+        customView.isHidden = false
+    }
+    
+    @objc func handleSwipeDown(_ sender: UISwipeGestureRecognizer) {
+        customView.isHidden = true
+        smallDescView.isHidden = false
     }
 }

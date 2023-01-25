@@ -24,6 +24,11 @@ class ViewController: UIViewController {
         tableView.delegate = self
         
         self.navigationController?.navigationBar.prefersLargeTitles = true
+        let image = UIImage(named: "arrow.backward")
+           navigationController?.navigationBar.backIndicatorImage = image
+           navigationController?.navigationBar.backIndicatorTransitionMaskImage = image
+               
+           navigationItem.backButtonDisplayMode = .minimal
         
         comicsManager.performRequest()
     }

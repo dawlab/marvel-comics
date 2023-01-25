@@ -8,15 +8,41 @@
 import UIKit
 
 class CustomView: UIView {
+
+    @IBOutlet var ContentView: UIView!
     
+    @IBOutlet weak var grabber: UIView!
     
-    @IBOutlet var contenView: UIView!
+    @IBOutlet weak var title: UILabel!
+    
+    @IBOutlet weak var authors: UILabel!
+    
+    @IBOutlet weak var desc: UILabel!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        commonInit()
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    required init?(coder aCoder: NSCoder) {
+        super.init(coder: aCoder)
+        commonInit()
+    }
+    
+    private func commonInit() {
+        Bundle.main.loadNibNamed("CustomView", owner: self)
+        addSubview(ContentView)
+        
+        ContentView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        ContentView.layer.cornerRadius = 25
+        grabber.layer.cornerRadius = 5
+    }
+    
+    func sendToCustomView(comic: ComicModel?) {
+        if let comicDetails = comic {
+            title.text = comicDetails.title
+            authors.text = comicDetails.authors
+            desc.text = comicDetails.description
+        }
     }
 }
