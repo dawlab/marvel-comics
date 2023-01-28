@@ -16,7 +16,7 @@ class ViewController: UIViewController {
     var titleLabel: String?
     var itemsCounter: Int?
     var comics: [ComicModel] = []
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         comicsManager.delegate = self
@@ -24,7 +24,6 @@ class ViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         self.tableView.register(UINib(nibName: "CustomCell", bundle: nil), forCellReuseIdentifier: CustomCell.identifier)
-
         
         navigationController?.navigationBar.prefersLargeTitles = true
         let image = UIImage(named: "arrow.backward")

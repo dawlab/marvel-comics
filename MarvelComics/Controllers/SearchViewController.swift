@@ -8,22 +8,19 @@
 import UIKit
 import SDWebImage
 
-class SearchViewController: UIViewController, UISearchResultsUpdating {
+class SearchViewController: UIViewController {
     
-    let searchController = UISearchController(searchResultsController: ResultsViewController())
-    let ResultsVC = ResultsViewController()
+    private lazy var mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+    
+    lazy var resultsController = mainStoryboard.instantiateViewController(withIdentifier: "ResultsViewController")
+    lazy var searchController = UISearchController(searchResultsController: resultsController)
+
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.searchController = searchController
-        
-        searchController.searchResultsUpdater = (ResultsVC as? any UISearchResultsUpdating)
-        
-    }
-    
-    func updateSearchResults(for searchController: UISearchController) {
-
-        
+        searchController.searchResultsUpdater = (resultsController as! any UISearchResultsUpdating)
     }
 }

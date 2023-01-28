@@ -55,20 +55,20 @@
         <!--Results View Controller-->
         <scene sceneID="Vgj-8U-u9s">
             <objects>
-                <viewController id="XjD-PS-G0g" customClass="ResultsViewController" customModule="MarvelComics" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ResultsViewController" id="XjD-PS-G0g" customClass="ResultsViewController" customModule="MarvelComics" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="iib-NO-Ngr">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="V4F-MS-dc2">
-                                <rect key="frame" x="0.0" y="48" width="414" height="814"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="V4F-MS-dc2">
+                                <rect key="frame" x="0.0" y="97" width="414" height="716"/>
+                                <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CustomCell" rowHeight="219" id="MdD-QI-NbI">
-                                        <rect key="frame" x="0.0" y="50" width="414" height="219"/>
+                                        <rect key="frame" x="20" y="55.5" width="374" height="219"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="MdD-QI-NbI" id="uF0-PH-D9L" customClass="CustomCell" customModule="MarvelComics" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="219"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="219"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -76,21 +76,23 @@
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="QcI-7z-tGR"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="V4F-MS-dc2" firstAttribute="top" secondItem="QcI-7z-tGR" secondAttribute="top" id="DOv-Eu-oid"/>
+                            <constraint firstItem="V4F-MS-dc2" firstAttribute="top" secondItem="QcI-7z-tGR" secondAttribute="top" constant="5" id="DOv-Eu-oid"/>
                             <constraint firstItem="QcI-7z-tGR" firstAttribute="bottom" secondItem="V4F-MS-dc2" secondAttribute="bottom" id="FbY-aP-qr4"/>
                             <constraint firstItem="QcI-7z-tGR" firstAttribute="trailing" secondItem="V4F-MS-dc2" secondAttribute="trailing" id="I8g-lC-w47"/>
                             <constraint firstItem="V4F-MS-dc2" firstAttribute="leading" secondItem="QcI-7z-tGR" secondAttribute="leading" id="rH0-cP-d0g"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="vta-78-z0u"/>
                     <connections>
                         <outlet property="searchTableView" destination="V4F-MS-dc2" id="qmP-kv-j9B"/>
+                        <segue destination="0xD-6S-EfQ" kind="show" identifier="showSearchDetails" id="IS1-tH-zBg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pfy-eB-1Kh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1221.7391304347827" y="1431.6964285714284"/>
+            <point key="canvasLocation" x="1712" y="2160"/>
         </scene>
         <!--Details-->
         <scene sceneID="mnA-c5-4DL">
@@ -202,7 +204,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wzx-Y0-T9g" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="463.768115942029" y="2153.5714285714284"/>
+            <point key="canvasLocation" x="464" y="2160"/>
         </scene>
         <!--Search-->
         <scene sceneID="8nf-4z-Tzi">
@@ -228,7 +230,7 @@
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="hoD-QT-7jq"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="mnq-3t-Dyt" firstAttribute="centerY" secondItem="BE1-44-bZF" secondAttribute="centerY" constant="0.75" id="5Ad-jH-Oid"/>
                             <constraint firstItem="waY-dM-6dA" firstAttribute="centerY" secondItem="BE1-44-bZF" secondAttribute="centerY" constant="89" id="BG1-aJ-TjH"/>
@@ -237,10 +239,13 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Search" id="2oY-Q2-nNs"/>
+                    <connections>
+                        <segue destination="XjD-PS-G0g" kind="show" id="U4r-IG-nWk"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IbO-XS-q9h" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1864" y="1432"/>
+            <point key="canvasLocation" x="1712" y="1432"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="J1l-eh-oNe">
@@ -318,6 +323,9 @@
             <point key="canvasLocation" x="1711.5942028985507" y="730.58035714285711"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="IS1-tH-zBg"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="book.fill" catalog="system" width="128" height="95"/>
         <image name="house" catalog="system" width="128" height="104"/>
