@@ -16,7 +16,7 @@ class ViewController: UIViewController {
     var titleLabel: String?
     var itemsCounter: Int?
     var comics: [ComicModel] = []
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         comicsManager.delegate = self

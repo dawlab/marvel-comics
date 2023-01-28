@@ -15,7 +15,7 @@ protocol ComicsManagerDelegate {
 struct ComicsManager {
     
     var delegate: ComicsManagerDelegate?
-
+    
     func decodeFromJSON() {
         guard let url = URL(string: "https://gateway.marvel.com/v1/public/comics?format=comic&formatType=comic&noVariants=true&ts=1&apikey=a918e5981c403ce82cea3d4209804351&hash=1882d3b7e252f80ccda13a75a0a428ed") else { return }
         let _: Void = URLSession.shared.dataTask(with: url) { data, response, error in
@@ -48,7 +48,7 @@ struct ComicsManager {
             
             let authorsCount = decodedData.data.results[i].creators.returned
             
-//            One comic can have many authors thats why I use for loop
+            //            One comic can have many authors thats why I use for loop
             if authorsCount != 0 {
                 for n in 0..<authorsCount {
                     comicAuthor = decodedData.data.results[i].creators.items[n].name ?? "No information"
@@ -58,14 +58,14 @@ struct ComicsManager {
                 comicAuthor = "No information"
                 authorsArray.append(comicAuthor)
             }
-//            Make one string with authors names from an array
+            //            Make one string with authors names from an array
             comicAuthors = authorsArray.joined(separator: ", ")
             
             if comicDesc == "" || comicDesc == nil || comicDesc == "#N/A" {
                 comicDesc = "No information"
             }
             
-//            Download comic's image thumbnail urlString
+            //            Download comic's image thumbnail urlString
             let comicThumbnail = decodedData.data.results[i].thumbnail.path
             let comicThumbnailExt = decodedData.data.results[i].thumbnail.extension
             let imageUrl = URL(string: "\(comicThumbnail).\(comicThumbnailExt)")
