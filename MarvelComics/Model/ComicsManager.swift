@@ -72,7 +72,6 @@ struct ComicsManager {
                             comicsArray.append(comic)
                         }
                         self.delegate?.didUpdateList(comicsArray)
-                        print("delegate, let's do this")
                     } catch {
                         print(error)
                     }

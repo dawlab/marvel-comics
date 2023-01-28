@@ -14,8 +14,6 @@ class SearchViewController: UIViewController {
     
     lazy var resultsController = mainStoryboard.instantiateViewController(withIdentifier: "ResultsViewController")
     lazy var searchController = UISearchController(searchResultsController: resultsController)
-
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
