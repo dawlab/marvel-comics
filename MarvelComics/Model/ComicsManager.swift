@@ -6,18 +6,73 @@
 //
 
 import Foundation
-import UIKit
 
-protocol ComicsManagerDelegate {
+protocol ComicsManagerDelegate: AnyObject {
     func didUpdateList(_ comicsArray: [ComicModel])
 }
 
-struct ComicsManager {
+class WeakComicsManagerDelegate {
+    weak var delegate: ComicsManagerDelegate?
     
-    var delegate: ComicsManagerDelegate?
+    init(delegate: ComicsManagerDelegate?) {
+        self.delegate = delegate
+    }
+}
+
+class ComicsManager {
+    private var delegates: [WeakComicsManagerDelegate] = []
     
-    func decodeFromJSON() {
+    private var comicsModels: [ComicModel] = [] {
+        didSet {
+            emitLoad()
+        }
+    }
+    
+    private let networkService: NetworkService
+    private let comicsMapper: ComicsMapper
+    
+    init(
+        networkService: NetworkService,
+        comicsMapper: ComicsMapper
+    ) {
+        self.networkService = networkService
+        self.comicsMapper = comicsMapper
+    }
+    
+    func registerDelegate(delegate: ComicsManagerDelegate) {
+        delegates.append(WeakComicsManagerDelegate(delegate: delegate))
+    }
+    
+    func loadData() {
+        guard comicsModels.isEmpty else {
+            emitLoad()
+            return
+        }
+        
         guard let url = URL(string: "https://gateway.marvel.com/v1/public/comics?format=comic&formatType=comic&noVariants=true&ts=1&apikey=a918e5981c403ce82cea3d4209804351&hash=1882d3b7e252f80ccda13a75a0a428ed") else { return }
+        
+        networkService.loadData(from: url) { [weak self] (result: Result<ComicsData, Error>) in
+            switch result {
+            case .success(let decodedData):
+                self?.comicsModels = self?.comicsMapper.map(decodedData) ?? []
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    private func emitLoad() {
+        DispatchQueue.main.async {
+            self.delegates.forEach { $0.delegate?.didUpdateList(self.comicsModels) }
+        }
+    }
+}
+
+struct NetworkService {
+    func loadData<T: Decodable>(
+        from url: URL,
+        completion: @escaping (Result<T, Error>) -> Void
+    ) {
         let _: Void = URLSession.shared.dataTask(with: url) { data, response, error in
             if let error = error {
                 print("There was an error: \(error.localizedDescription)")
@@ -25,55 +80,65 @@ struct ComicsManager {
                 if let safeData = data {
                     let decoder = JSONDecoder()
                     do {
-                        let decodedData = try decoder.decode(ComicsData.self, from: safeData)
-                        saveComics(from: decodedData)
+                        let decodedData = try decoder.decode(T.self, from: safeData)
+                        completion(.success(decodedData))
                     } catch {
-                        print(error)
+                        completion(.failure(error))
                     }
                 }
             }
         }.resume()
     }
-    
-    func saveComics(from decodedData: ComicsData) {
-        var comicsArray: [ComicModel] = []
-        let count = decodedData.data.count
+}
+
+struct ComicsMapper {
+    func map(_ comicsData: ComicsData) -> [ComicModel] {
+        let count = comicsData.data.count
         
-        for i in 0..<count {
-            var comicAuthor = ""
-            var comicAuthors = ""
-            var authorsArray = [String]()
-            let comicTitle = decodedData.data.results[i].title
-            var comicDesc = decodedData.data.results[i].description
-            
-            let authorsCount = decodedData.data.results[i].creators.returned
-            
-            //            One comic can have many authors thats why I use for loop
-            if authorsCount != 0 {
-                for n in 0..<authorsCount {
-                    comicAuthor = decodedData.data.results[i].creators.items[n].name ?? "No information"
-                    authorsArray.append(comicAuthor)
-                }
-            } else {
-                comicAuthor = "No information"
+        return Array(0..<count).map { index in
+            buildComicModel(basedOn: comicsData.data.results[index])
+        }
+    }
+    
+    private func buildComicModel(basedOn dataResult: DataResult) -> ComicModel {
+        ComicModel(title: dataResult.title,
+                   description: buildDescription(basedOn: dataResult),
+                   authors: buildAuthors(basedOn: dataResult),
+                   imageUrl: buildImageUrl(basedOn: dataResult))
+    }
+    
+    private func buildDescription(basedOn dataResult: DataResult) -> String? {
+        let comicDesc = dataResult.description
+        
+        if comicDesc == "" || comicDesc == nil || comicDesc == "#N/A" {
+            return "No information"
+        } else {
+            return comicDesc
+        }
+    }
+    
+    private func buildAuthors(basedOn dataResult: DataResult) -> String {
+        var comicAuthor = ""
+        var authorsArray = [String]()
+        
+        let authorsCount = dataResult.creators.returned
+        // One comic can have many authors thats why I use for loop
+        if authorsCount != 0 {
+            for n in 0..<authorsCount {
+                comicAuthor = dataResult.creators.items[n].name ?? "No information"
                 authorsArray.append(comicAuthor)
             }
-            //            Make one string with authors names from an array
-            comicAuthors = authorsArray.joined(separator: ", ")
-            
-            if comicDesc == "" || comicDesc == nil || comicDesc == "#N/A" {
-                comicDesc = "No information"
-            }
-            
-            //            Download comic's image thumbnail urlString
-            let comicThumbnail = decodedData.data.results[i].thumbnail.path
-            let comicThumbnailExt = decodedData.data.results[i].thumbnail.extension
-            let imageUrl = URL(string: "\(comicThumbnail).\(comicThumbnailExt)")
-            
-            let comic = ComicModel(title: comicTitle, description: comicDesc, authors: comicAuthors, imageUrl: (imageUrl ?? URL(string: "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available.jpg")!))
-            
-            comicsArray.append(comic)
+        } else {
+            authorsArray.append("No information")
         }
-        self.delegate?.didUpdateList(comicsArray)
+        
+        // Make one string with authors names from an array
+        return authorsArray.joined(separator: ", ")
+    }
+    
+    private func buildImageUrl(basedOn dataResult: DataResult) -> URL {
+        let comicThumbnail = dataResult.thumbnail.path
+        let comicThumbnailExt = dataResult.thumbnail.extension
+        return  URL(string: "\(comicThumbnail).\(comicThumbnailExt)") ?? URL(string: "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available.jpg")!
     }
 }

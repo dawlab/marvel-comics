@@ -11,10 +11,10 @@ struct ComicsData: Decodable {
 
 struct Data: Decodable {
     let count: Int
-    let results: [Results]
+    let results: [DataResult]
 }
 
-struct Results: Decodable {
+struct DataResult: Decodable {
     let title: String
     let creators: Creators
     let description: String?

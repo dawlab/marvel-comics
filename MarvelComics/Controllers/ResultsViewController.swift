@@ -10,14 +10,14 @@ import UIKit
 class ResultsViewController: UIViewController {
     
     @IBOutlet weak var searchTableView: UITableView!
-    var comicsManager = ComicsManager()
+    var comicsManager = comicManagerInstance
     var comicsData: [ComicModel] = []
     var filteredData: [ComicModel]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        comicsManager.delegate = self
-        comicsManager.decodeFromJSON()
+        comicsManager.registerDelegate(delegate: self)
+        comicsManager.loadData()
         searchTableView.dataSource = self
         searchTableView.delegate = self
         searchTableView.register(UINib(nibName: "CustomCell", bundle: nil), forCellReuseIdentifier: CustomCell.identifier)
@@ -85,8 +85,6 @@ extension ResultsViewController: UISearchResultsUpdating {
 //MARK: - ComicsManagerDelegate
 extension ResultsViewController: ComicsManagerDelegate {
     func didUpdateList(_ comicsArray: [ComicModel]) {
-        DispatchQueue.main.async {
-            self.comicsData = comicsArray
-        }
+        self.comicsData = comicsArray
     }
 }

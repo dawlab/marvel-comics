@@ -7,6 +7,9 @@
 
 import UIKit
 
+let comicManagerInstance = ComicsManager(networkService: NetworkService(),
+                                         comicsMapper: ComicsMapper())
+
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 

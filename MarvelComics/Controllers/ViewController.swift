@@ -9,8 +9,8 @@ import UIKit
 import SDWebImage
 
 class ViewController: UIViewController {
+    var comicsManager = comicManagerInstance
     
-    var comicsManager = ComicsManager()
     @IBOutlet weak var tableView: UITableView!
     
     var titleLabel: String?
@@ -19,8 +19,8 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        comicsManager.delegate = self
-        comicsManager.decodeFromJSON()
+        comicsManager.registerDelegate(delegate: self)
+        comicsManager.loadData()
         tableView.dataSource = self
         tableView.delegate = self
         self.tableView.register(UINib(nibName: "CustomCell", bundle: nil), forCellReuseIdentifier: CustomCell.identifier)
@@ -82,10 +82,8 @@ extension ViewController: UITableViewDelegate {
 
 extension ViewController: ComicsManagerDelegate {
     func didUpdateList(_ comicsArray: [ComicModel]) {
-        DispatchQueue.main.async {
-            self.comics = comicsArray
-            self.tableView.reloadData()
-        }
+        self.comics = comicsArray
+        self.tableView.reloadData()
     }
 }
 
