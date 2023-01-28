@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ResultsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ResultsViewController: UIViewController {
     
     @IBOutlet weak var searchTableView: UITableView!
     var comicsManager = ComicsManager()
@@ -17,7 +17,7 @@ class ResultsViewController: UIViewController, UITableViewDataSource, UITableVie
     override func viewDidLoad() {
         super.viewDidLoad()
         comicsManager.delegate = self
-        comicsManager.performRequest()
+        comicsManager.decodeFromJSON()
         searchTableView.dataSource = self
         searchTableView.delegate = self
         searchTableView.register(UINib(nibName: "CustomCell", bundle: nil), forCellReuseIdentifier: CustomCell.identifier)
@@ -30,7 +30,9 @@ class ResultsViewController: UIViewController, UITableViewDataSource, UITableVie
             }
         }
     }
-    
+}
+//MARK: - UITableViewDataSource
+extension ResultsViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return filteredData.count
     }
@@ -53,13 +55,15 @@ class ResultsViewController: UIViewController, UITableViewDataSource, UITableVie
         cell.cellDesc.text = filteredData[indexPath.section].description
         return cell
     }
-    
+}
+//MARK: - UITableViewDelegate
+extension ResultsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedItem = filteredData[indexPath.section]
         self.performSegue(withIdentifier: "showSearchDetails", sender: selectedItem)
     }
 }
-
+//MARK: - UISearchResultsUpdating
 extension ResultsViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         guard let searchText = searchController.searchBar.text else {
@@ -78,7 +82,7 @@ extension ResultsViewController: UISearchResultsUpdating {
         }
     }
 }
-
+//MARK: - ComicsManagerDelegate
 extension ResultsViewController: ComicsManagerDelegate {
     func didUpdateList(_ comicsArray: [ComicModel]) {
         DispatchQueue.main.async {

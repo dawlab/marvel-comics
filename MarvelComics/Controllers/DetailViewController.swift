@@ -13,12 +13,9 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var comicImageView: UIImageView!
     @IBOutlet weak var smallDescView: UIView!
     @IBOutlet weak var grabber: UIView!
-    
-    
     @IBOutlet weak var comicTitle: UILabel!
     @IBOutlet weak var comicAuthors: UILabel!
     @IBOutlet weak var comicDesc: UILabel!
-    
     
     @IBOutlet weak var customView: CustomView!
     
@@ -57,7 +54,7 @@ class DetailViewController: UIViewController {
     }
     
     func AddGestureRecognizers() {
-        //        Add tap gesture recognizer
+//        Add tap gesture recognizer
         let smallDescViewTap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap))
         let customViewTap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap))
         smallDescView.addGestureRecognizer(smallDescViewTap)
@@ -65,12 +62,12 @@ class DetailViewController: UIViewController {
         customView.addGestureRecognizer(customViewTap)
         customView.isUserInteractionEnabled = true
         
-        //        Add swipe up gesture recognizer
+//        Add swipe up gesture recognizer
         let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(self.handleSwipeUp))
         swipeUp.direction = .up
         smallDescView.addGestureRecognizer(swipeUp)
         
-        //        Add swipe down gesture recognizer
+//        Add swipe down gesture recognizer
         let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(self.handleSwipeDown))
         swipeDown.direction = .down
         customView.addGestureRecognizer(swipeDown)

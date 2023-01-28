@@ -20,7 +20,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         comicsManager.delegate = self
-        comicsManager.performRequest()
+        comicsManager.decodeFromJSON()
         tableView.dataSource = self
         tableView.delegate = self
         self.tableView.register(UINib(nibName: "CustomCell", bundle: nil), forCellReuseIdentifier: CustomCell.identifier)
