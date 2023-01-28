@@ -12,7 +12,7 @@ class ResultsViewController: UIViewController {
     @IBOutlet weak var searchTableView: UITableView!
     var comicsManager = comicManagerInstance
     var comicsData: [ComicModel] = []
-    var filteredData: [ComicModel]!
+    var filteredData: [ComicModel] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +26,7 @@ class ResultsViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showSearchDetails" {
             if let destinationVC = segue.destination as? DetailViewController {
+                destinationVC.hidesBottomBarWhenPushed = true
                 destinationVC.comic = (sender as! ComicModel)
             }
         }
@@ -34,7 +35,7 @@ class ResultsViewController: UIViewController {
 //MARK: - UITableViewDataSource
 extension ResultsViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return filteredData.count
+        filteredData.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -70,16 +71,12 @@ extension ResultsViewController: UISearchResultsUpdating {
             return
         }
         
-        filteredData = []
-        
-        let names = comicsData.map { $0.title }
-    
-        for name in names {
-            if name.uppercased().contains(searchText.uppercased()) {
-                filteredData = comicsData.filter { $0.title == name }
-                searchTableView.reloadData()
-            }
+        filteredData = comicsData.compactMap {
+            $0.title.uppercased().contains(searchText.uppercased())
+            ? $0
+            : nil
         }
+        searchTableView.reloadData()
     }
 }
 //MARK: - ComicsManagerDelegate

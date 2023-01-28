@@ -35,6 +35,7 @@ class ViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetails" {
             let destinationVC = segue.destination as! DetailViewController
+            destinationVC.hidesBottomBarWhenPushed = true
             destinationVC.comic = (sender as! ComicModel)
         }
     }
