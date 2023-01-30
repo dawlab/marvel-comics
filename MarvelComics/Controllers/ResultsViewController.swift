@@ -7,12 +7,16 @@
 
 import UIKit
 
+protocol ResultsDelegate {
+    func passInformation(basedOn selectedItem: ComicModel)
+}
+
 class ResultsViewController: UIViewController {
-    
     @IBOutlet weak var searchTableView: UITableView!
     var comicsManager = comicManagerInstance
     var comicsData: [ComicModel] = []
     var filteredData: [ComicModel] = []
+    var delegate: ResultsDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,15 +25,6 @@ class ResultsViewController: UIViewController {
         searchTableView.dataSource = self
         searchTableView.delegate = self
         searchTableView.register(UINib(nibName: "CustomCell", bundle: nil), forCellReuseIdentifier: CustomCell.identifier)
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showSearchDetails" {
-            if let destinationVC = segue.destination as? DetailViewController {
-                destinationVC.hidesBottomBarWhenPushed = true
-                destinationVC.comic = (sender as! ComicModel)
-            }
-        }
     }
 }
 //MARK: - UITableViewDataSource
@@ -61,7 +56,7 @@ extension ResultsViewController: UITableViewDataSource {
 extension ResultsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedItem = filteredData[indexPath.section]
-        self.performSegue(withIdentifier: "showSearchDetails", sender: selectedItem)
+        delegate?.passInformation(basedOn: selectedItem)
     }
 }
 //MARK: - UISearchResultsUpdating

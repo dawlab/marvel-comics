@@ -61,7 +61,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="V4F-MS-dc2">
-                                <rect key="frame" x="0.0" y="97" width="414" height="716"/>
+                                <rect key="frame" x="0.0" y="53" width="414" height="809"/>
                                 <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CustomCell" rowHeight="219" id="MdD-QI-NbI">
@@ -87,7 +87,6 @@
                     <navigationItem key="navigationItem" id="vta-78-z0u"/>
                     <connections>
                         <outlet property="searchTableView" destination="V4F-MS-dc2" id="qmP-kv-j9B"/>
-                        <segue destination="0xD-6S-EfQ" kind="show" identifier="showSearchDetails" id="IS1-tH-zBg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pfy-eB-1Kh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -240,7 +239,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Search" id="2oY-Q2-nNs"/>
                     <connections>
-                        <segue destination="XjD-PS-G0g" kind="show" id="U4r-IG-nWk"/>
+                        <segue destination="0xD-6S-EfQ" kind="show" identifier="searchDetails" id="Pin-gU-hFo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IbO-XS-q9h" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -324,7 +323,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="IS1-tH-zBg"/>
+        <segue reference="Pin-gU-hFo"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="book.fill" catalog="system" width="128" height="95"/>
