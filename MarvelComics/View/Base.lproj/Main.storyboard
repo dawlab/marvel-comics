@@ -239,7 +239,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Search" id="2oY-Q2-nNs"/>
                     <connections>
-                        <segue destination="0xD-6S-EfQ" kind="show" identifier="searchDetails" id="Pin-gU-hFo"/>
+                        <segue destination="0xD-6S-EfQ" kind="show" identifier="searchDetails" id="TuZ-hR-jQW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IbO-XS-q9h" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -323,7 +323,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Pin-gU-hFo"/>
+        <segue reference="TuZ-hR-jQW"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="book.fill" catalog="system" width="128" height="95"/>

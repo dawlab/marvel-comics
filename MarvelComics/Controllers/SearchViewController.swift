@@ -17,8 +17,7 @@ class SearchViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let resultsVC = ResultsViewController()
-        resultsVC.delegate = self
+        (resultsController as? ResultsViewController)?.delegate = self
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.searchController = searchController
         searchController.searchResultsUpdater = (resultsController as! any UISearchResultsUpdating)
