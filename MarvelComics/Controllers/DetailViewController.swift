@@ -13,12 +13,9 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var comicImageView: UIImageView!
     @IBOutlet weak var smallDescView: UIView!
     @IBOutlet weak var grabber: UIView!
-    
-    
     @IBOutlet weak var comicTitle: UILabel!
     @IBOutlet weak var comicAuthors: UILabel!
     @IBOutlet weak var comicDesc: UILabel!
-    
     
     @IBOutlet weak var customView: CustomView!
     

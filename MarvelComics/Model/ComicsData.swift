@@ -6,31 +6,31 @@
 //
 
 struct ComicsData: Decodable {
-    var data: Data
+    let data: Data
 }
 
 struct Data: Decodable {
-    var count: Int
-    var results: [Results]
+    let count: Int
+    let results: [DataResult]
 }
 
-struct Results: Decodable {
-    var title: String
-    var creators: Creators
-    var description: String?
-    var thumbnail: Thumbnail
+struct DataResult: Decodable {
+    let title: String
+    let creators: Creators
+    let description: String?
+    let thumbnail: Thumbnail
 }
 
 struct Creators: Decodable {
-    var items: [Items]
-    var returned: Int
+    let items: [Items]
+    let returned: Int
 }
 
 struct Items: Decodable {
-    var name: String?
+    let name: String?
 }
 
 struct Thumbnail: Decodable {
-    var path: String
-    var `extension`: String
+    let path: String
+    let `extension`: String
 }

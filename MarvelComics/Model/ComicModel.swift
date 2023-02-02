@@ -9,11 +9,8 @@ import Foundation
 import UIKit
 
 struct ComicModel {
-    var title: String
-    var description: String?
-    var authors: String
-    var imageUrl: URL
-//    let author: String
-//    let description: String
-//    let imagePath: String
+    let title: String
+    let description: String?
+    let authors: String
+    let imageUrl: URL
 }

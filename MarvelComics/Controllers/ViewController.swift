@@ -9,8 +9,8 @@ import UIKit
 import SDWebImage
 
 class ViewController: UIViewController {
+    var comicsManager = comicManagerInstance
     
-    var comicsManager = ComicsManager()
     @IBOutlet weak var tableView: UITableView!
     
     var titleLabel: String?
@@ -19,23 +19,23 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        comicsManager.delegate = self
+        comicsManager.registerDelegate(delegate: self)
+        comicsManager.loadData()
         tableView.dataSource = self
         tableView.delegate = self
+        self.tableView.register(UINib(nibName: "CustomCell", bundle: nil), forCellReuseIdentifier: CustomCell.identifier)
         
-        self.navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.prefersLargeTitles = true
         let image = UIImage(named: "arrow.backward")
-           navigationController?.navigationBar.backIndicatorImage = image
-           navigationController?.navigationBar.backIndicatorTransitionMaskImage = image
-               
-           navigationItem.backButtonDisplayMode = .minimal
-        
-        comicsManager.performRequest()
+        navigationController?.navigationBar.backIndicatorImage = image
+        navigationController?.navigationBar.backIndicatorTransitionMaskImage = image
+        navigationItem.backButtonDisplayMode = .minimal
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetails" {
             let destinationVC = segue.destination as! DetailViewController
+            destinationVC.hidesBottomBarWhenPushed = true
             destinationVC.comic = (sender as! ComicModel)
         }
     }
@@ -54,11 +54,18 @@ extension ViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ComicsTableViewCell") as! ComicsTableViewCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: CustomCell.identifier, for: indexPath) as? CustomCell else {
+            return UITableViewCell()
+        }
         cell.cellImageView.sd_setImage(with: comics[indexPath.section].imageUrl, completed: nil)
+        cell.cellImageView.layer.cornerRadius = 9
+        cell.cellImageView.clipsToBounds = true
+        cell.cellImageView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
+        
         cell.cellTitle.text = comics[indexPath.section].title
-        cell.cellAuthor.text = comics[indexPath.section].authors
-        cell.cellDescription.text = comics[indexPath.section].description
+        cell.cellAuthors.text = comics[indexPath.section].authors
+        cell.cellDesc.text = comics[indexPath.section].description
+        
         return cell
     }
 }
@@ -76,27 +83,8 @@ extension ViewController: UITableViewDelegate {
 
 extension ViewController: ComicsManagerDelegate {
     func didUpdateList(_ comicsArray: [ComicModel]) {
-        DispatchQueue.main.async {
-            self.comics = comicsArray
-            self.tableView.reloadData()
-        }
-    }
-}
-
-//MARK: - ComicsTableViewCell
-
-class ComicsTableViewCell: UITableViewCell {
-    
-    @IBOutlet weak var cellImageView: UIImageView!
-    @IBOutlet weak var cellTitle: UILabel!
-    @IBOutlet weak var cellAuthor: UILabel!
-    @IBOutlet weak var cellDescription: UILabel!
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        cellImageView.layer.cornerRadius = 9
-        cellImageView.clipsToBounds = true
-        cellImageView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
+        self.comics = comicsArray
+        self.tableView.reloadData()
     }
 }
 
