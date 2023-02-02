@@ -16,9 +16,10 @@ iOS app created for display information about Marvel comics using Marvel API.
 - UIKit
 
 # Screenshots
-![marvel-comics-app-1](https://user-images.githubusercontent.com/7715561/216281262-d1b76bc6-29b5-4245-930e-a7eb0f976a12.png)
 
-![marvel-comics-app-2](https://user-images.githubusercontent.com/7715561/216281297-b8d299bc-4f41-4cc7-9da9-1586dadcc216.png)
+![MarvelComics App #1](https://user-images.githubusercontent.com/7715561/216283757-5d1bd1d0-72d6-44a9-bf61-f17cdcff8b85.png)
+
+![MarvelComics App #2](https://user-images.githubusercontent.com/7715561/216283790-1c1be545-ea0e-48da-b0f0-a5e6daf725c4.png)
 
 # External libraries
 - [SDWebImage](https://github.com/SDWebImage/SDWebImage)
