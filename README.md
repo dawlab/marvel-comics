@@ -3,7 +3,7 @@ iOS app created for display information about Marvel comics using Marvel API.
 
 # General Information
 - This 3-screen application presents basic information about Marvel comics.
-- The ability to dynamically search for comics
+- Dynamically search for comics function. 
 - This app was developed solely for educational purposes based on [Figma mockup](https://www.figma.com/proto/CET2h3XyxsvNMi8Wz2P5HW/Comics-app?node-id=103:2815&viewport=769,-1151,0.47655215859413147&scaling=min-zoom)
 
 # Code architecture 
