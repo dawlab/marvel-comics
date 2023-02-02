@@ -252,15 +252,13 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="AS8-iu-MJv" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="pg3-Qh-c4i"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" itemPositioning="fill" id="d9a-lM-YyY">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="d9a-lM-YyY">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="selectedImageTintColor" systemColor="systemRedColor"/>
-                        <tabBarAppearance key="scrollEdgeAppearance">
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </tabBarAppearance>
+                        <tabBarAppearance key="scrollEdgeAppearance"/>
                     </tabBar>
                     <connections>
                         <segue destination="90Y-lC-omi" kind="relationship" relationship="viewControllers" id="du3-pR-JAj"/>
@@ -271,11 +269,11 @@
             </objects>
             <point key="canvasLocation" x="1027.536231884058" y="3.3482142857142856"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Home-->
         <scene sceneID="Htw-mm-6LW">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="90Y-lC-omi" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" id="Oph-J1-5lF">
+                    <tabBarItem key="tabBarItem" title="Home" id="Oph-J1-5lF">
                         <imageReference key="image" image="house" catalog="system" symbolScale="large"/>
                         <inset key="largeContentSizeImageInsets" minX="0.0" minY="1" maxX="0.0" maxY="0.0"/>
                         <color key="badgeColor" systemColor="systemOrangeColor"/>
@@ -297,11 +295,11 @@
             </objects>
             <point key="canvasLocation" x="465" y="731"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Search-->
         <scene sceneID="1u7-an-Rci">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="NEo-TY-IEJ" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" id="iKE-Ca-KLt">
+                    <tabBarItem key="tabBarItem" title="Search" id="iKE-Ca-KLt">
                         <imageReference key="image" image="magnifyingglass" catalog="system" symbolScale="large"/>
                         <color key="badgeColor" systemColor="systemOrangeColor"/>
                         <imageReference key="selectedImage" image="magnifyingglass" catalog="system" symbolScale="large"/>
@@ -323,7 +321,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="TuZ-hR-jQW"/>
+        <segue reference="bjL-6d-ask"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="book.fill" catalog="system" width="128" height="95"/>
