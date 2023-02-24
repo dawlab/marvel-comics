@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  ListViewController.swift
 //  MarvelComics
 //
 //  Created by Dawid Łabno on 17/01/2023.
@@ -8,7 +8,7 @@
 import UIKit
 import SDWebImage
 
-class ViewController: UIViewController {
+class ListViewController: UIViewController {
     var comicsManager = comicManagerInstance
     
     @IBOutlet weak var tableView: UITableView!
@@ -42,7 +42,7 @@ class ViewController: UIViewController {
 
 //MARK: - UITableViewDataSource
 
-extension ViewController: UITableViewDataSource {
+extension ListViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return comics.count
@@ -71,7 +71,7 @@ extension ViewController: UITableViewDataSource {
 
 //MARK: - UITableViewDelegate
 
-extension ViewController: UITableViewDelegate {
+extension ListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedItem = comics[indexPath.section]
         self.performSegue(withIdentifier: "showDetails", sender: selectedItem)
@@ -80,7 +80,7 @@ extension ViewController: UITableViewDelegate {
 
 //MARK: - ComicsManagerDelegate
 
-extension ViewController: ComicsManagerDelegate {
+extension ListViewController: ComicsManagerDelegate {
     func didUpdateList(_ comicsArray: [ComicModel]) {
         self.comics = comicsArray
         self.tableView.reloadData()

@@ -10,8 +10,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CustomView" customModule="MarvelComics" customModuleProvider="target">
             <connections>
-                <outlet property="ContentView" destination="iN0-l3-epB" id="hOQ-LS-bp9"/>
                 <outlet property="authors" destination="2A5-6J-1ka" id="TEt-BV-d9y"/>
+                <outlet property="contentView" destination="iN0-l3-epB" id="hOQ-LS-bp9"/>
                 <outlet property="desc" destination="jJH-Kd-fqc" id="atv-Ba-OmH"/>
                 <outlet property="grabber" destination="SdW-FK-Bza" id="4ii-M2-MhC"/>
                 <outlet property="title" destination="42g-aU-jL1" id="Y4u-IX-a02"/>

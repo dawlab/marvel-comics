@@ -8,15 +8,10 @@
 import UIKit
 
 class CustomView: UIView {
-
-    @IBOutlet var ContentView: UIView!
-    
+    @IBOutlet var contentView: UIView!
     @IBOutlet weak var grabber: UIView!
-    
     @IBOutlet weak var title: UILabel!
-    
     @IBOutlet weak var authors: UILabel!
-    
     @IBOutlet weak var desc: UILabel!
     
     override init(frame: CGRect) {
@@ -31,10 +26,10 @@ class CustomView: UIView {
     
     private func commonInit() {
         Bundle.main.loadNibNamed("CustomView", owner: self)
-        addSubview(ContentView)
+        addSubview(contentView)
         
-        ContentView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-        ContentView.layer.cornerRadius = 25
+        contentView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        contentView.layer.cornerRadius = 25
         grabber.layer.cornerRadius = 5
     }
     
