@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Alamofire
 
 protocol ComicsManagerDelegate: AnyObject {
     func didUpdateList(_ comicsArray: [ComicModel])
@@ -59,6 +60,7 @@ class ComicsManager {
                 print(error)
             }
         }
+
     }
     
     private func emitLoad() {
@@ -73,21 +75,14 @@ struct NetworkService {
         from url: URL,
         completion: @escaping (Result<T, Error>) -> Void
     ) {
-        let _: Void = URLSession.shared.dataTask(with: url) { data, response, error in
-            if let error = error {
-                print("There was an error: \(error.localizedDescription)")
-            } else {
-                if let safeData = data {
-                    let decoder = JSONDecoder()
-                    do {
-                        let decodedData = try decoder.decode(T.self, from: safeData)
-                        completion(.success(decodedData))
-                    } catch {
-                        completion(.failure(error))
-                    }
-                }
+        AF.request(url).validate().responseDecodable(of: T.self) { response in
+            switch response.result {
+            case .success(let decodedData):
+                completion(.success(decodedData))
+            case .failure(let error):
+                completion(.failure(error))
             }
-        }.resume()
+        }
     }
 }
 
@@ -104,7 +99,9 @@ struct ComicsMapper {
         ComicModel(title: dataResult.title,
                    description: buildDescription(basedOn: dataResult),
                    authors: buildAuthors(basedOn: dataResult),
-                   imageUrl: buildImageUrl(basedOn: dataResult))
+                   imageUrl: buildImageUrl(basedOn: dataResult),
+                   url: buildComicUrl(basedOn: dataResult)
+        )
     }
     
     private func buildDescription(basedOn dataResult: DataResult) -> String? {
@@ -140,5 +137,10 @@ struct ComicsMapper {
         let comicThumbnail = dataResult.thumbnail.path
         let comicThumbnailExt = dataResult.thumbnail.extension
         return  URL(string: "\(comicThumbnail).\(comicThumbnailExt)") ?? URL(string: "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available.jpg")!
+    }
+    
+    private func buildComicUrl(basedOn dataResult: DataResult) -> URL {
+        let comicUrl = dataResult.urls[0].url
+        return  URL(string: comicUrl) ?? URL(string: "https://marvel.com")!
     }
 }

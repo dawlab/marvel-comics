@@ -19,6 +19,7 @@ struct DataResult: Decodable {
     let creators: Creators
     let description: String?
     let thumbnail: Thumbnail
+    let urls: [ComicUrl]
 }
 
 struct Creators: Decodable {
@@ -33,4 +34,8 @@ struct Items: Decodable {
 struct Thumbnail: Decodable {
     let path: String
     let `extension`: String
+}
+
+struct ComicUrl: Decodable {
+    let url: String
 }

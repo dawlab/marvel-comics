@@ -16,6 +16,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var comicTitle: UILabel!
     @IBOutlet weak var comicAuthors: UILabel!
     @IBOutlet weak var comicDesc: UILabel!
+    @IBOutlet weak var findOutMoreButton: UIButton!
     
     @IBOutlet weak var customView: CustomView!
     
@@ -41,7 +42,7 @@ class DetailViewController: UIViewController {
     
     func showData() {
         if let comicPreview = comic {
-            //Small view data
+            // Small view data
             comicImageView.sd_setImage(with: comicPreview.imageUrl)
             comicTitle.text = comicPreview.title
             comicAuthors.text = comicPreview.authors
@@ -54,7 +55,7 @@ class DetailViewController: UIViewController {
     }
     
     func AddGestureRecognizers() {
-        //        Add tap gesture recognizer
+        // Add tap gesture recognizer
         let smallDescViewTap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap))
         let customViewTap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap))
         smallDescView.addGestureRecognizer(smallDescViewTap)
@@ -62,12 +63,12 @@ class DetailViewController: UIViewController {
         customView.addGestureRecognizer(customViewTap)
         customView.isUserInteractionEnabled = true
         
-        //        Add swipe up gesture recognizer
+        // Add swipe up gesture recognizer
         let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(self.handleSwipeUp))
         swipeUp.direction = .up
         smallDescView.addGestureRecognizer(swipeUp)
         
-        //        Add swipe down gesture recognizer
+        // Add swipe down gesture recognizer
         let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(self.handleSwipeDown))
         swipeDown.direction = .down
         customView.addGestureRecognizer(swipeDown)
@@ -92,5 +93,11 @@ class DetailViewController: UIViewController {
     @objc func handleSwipeDown(_ sender: UISwipeGestureRecognizer) {
         customView.isHidden = true
         smallDescView.isHidden = false
+    }
+    
+    @IBAction func ClickFindOutMoreButton(_ sender: Any) {
+        if let url = comic?.url  {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        }
     }
 }

@@ -13,4 +13,5 @@ struct ComicModel {
     let description: String?
     let authors: String
     let imageUrl: URL
+    let url: URL
 }

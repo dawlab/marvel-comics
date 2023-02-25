@@ -114,6 +114,9 @@
                                 <buttonConfiguration key="configuration" style="filled" title="Find out more">
                                     <color key="baseBackgroundColor" systemColor="systemRedColor"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="ClickFindOutMoreButton:" destination="0xD-6S-EfQ" eventType="touchUpInside" id="fut-56-TBy"/>
+                                </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TdC-1L-Caa">
                                 <rect key="frame" x="0.0" y="525" width="414" height="189"/>
@@ -197,6 +200,7 @@
                         <outlet property="comicImageView" destination="cMF-R1-fdI" id="cOG-77-vQm"/>
                         <outlet property="comicTitle" destination="xpa-vV-tpc" id="C7b-C2-0pM"/>
                         <outlet property="customView" destination="Pnz-6Q-Gc5" id="aFU-pS-KsM"/>
+                        <outlet property="findOutMoreButton" destination="3hs-Wo-Ex0" id="mdH-hB-NBg"/>
                         <outlet property="grabber" destination="f6p-n2-OSO" id="ZuA-v7-bXM"/>
                         <outlet property="smallDescView" destination="TdC-1L-Caa" id="cmp-nZ-OBD"/>
                     </connections>
