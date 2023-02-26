@@ -17,11 +17,12 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var comicAuthors: UILabel!
     @IBOutlet weak var comicDesc: UILabel!
     @IBOutlet weak var findOutMoreButton: UIButton!
+    @IBOutlet weak var shareButton: UIBarButtonItem!
     
     @IBOutlet weak var customView: CustomView!
     
     var comic: ComicModel?
-    
+    var comicUrl: URL?
     var imgUrl: URL?
     var isActive = false
     
@@ -42,6 +43,7 @@ class DetailViewController: UIViewController {
     
     func showData() {
         if let comicPreview = comic {
+            comicUrl = comicPreview.url
             // Small view data
             comicImageView.sd_setImage(with: comicPreview.imageUrl)
             comicTitle.text = comicPreview.title
@@ -96,8 +98,16 @@ class DetailViewController: UIViewController {
     }
     
     @IBAction func ClickFindOutMoreButton(_ sender: Any) {
-        if let url = comic?.url  {
+        if let url = comicUrl {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
+    }
+    
+    @IBAction func clickShareButton(_ sender: Any) {
+        guard let url = comicUrl else { return }
+        let shareSheetVC = UIActivityViewController(
+            activityItems: [url],
+            applicationActivities: nil)
+        present(shareSheetVC, animated: true)
     }
 }

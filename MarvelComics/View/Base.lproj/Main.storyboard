@@ -193,7 +193,13 @@
                             <constraint firstItem="Pnz-6Q-Gc5" firstAttribute="trailing" secondItem="xKc-f2-BQw" secondAttribute="trailing" id="x2W-Td-EFA"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Details" largeTitleDisplayMode="never" id="NPA-Nl-mif"/>
+                    <navigationItem key="navigationItem" title="Details" largeTitleDisplayMode="never" id="NPA-Nl-mif">
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="kAc-lF-sJu">
+                            <connections>
+                                <action selector="clickShareButton:" destination="0xD-6S-EfQ" id="FVH-C4-jbm"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="comicAuthors" destination="BTE-eR-k4X" id="USH-IY-ODh"/>
                         <outlet property="comicDesc" destination="7Db-Lb-8Be" id="P3k-SB-iZC"/>
@@ -202,6 +208,7 @@
                         <outlet property="customView" destination="Pnz-6Q-Gc5" id="aFU-pS-KsM"/>
                         <outlet property="findOutMoreButton" destination="3hs-Wo-Ex0" id="mdH-hB-NBg"/>
                         <outlet property="grabber" destination="f6p-n2-OSO" id="ZuA-v7-bXM"/>
+                        <outlet property="shareButton" destination="kAc-lF-sJu" id="ojn-qF-EwH"/>
                         <outlet property="smallDescView" destination="TdC-1L-Caa" id="cmp-nZ-OBD"/>
                     </connections>
                 </viewController>
@@ -259,8 +266,6 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="d9a-lM-YyY">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="selectedImageTintColor" systemColor="systemRedColor"/>
                     </tabBar>
                     <connections>

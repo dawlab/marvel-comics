@@ -75,6 +75,7 @@ extension ListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedItem = comics[indexPath.section]
         self.performSegue(withIdentifier: "showDetails", sender: selectedItem)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 
