@@ -7,6 +7,7 @@
 
 import UIKit
 import SDWebImage
+import MBProgressHUD
 
 class ListViewController: UIViewController {
     var comicsManager = comicManagerInstance
@@ -24,6 +25,7 @@ class ListViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         self.tableView.register(UINib(nibName: "CustomCell", bundle: nil), forCellReuseIdentifier: CustomCell.identifier)
+        showLoadingHUD()
         
         navigationController?.navigationBar.prefersLargeTitles = true
         let image = UIImage(named: "arrow.backward")
@@ -37,6 +39,19 @@ class ListViewController: UIViewController {
             let destinationVC = segue.destination as! DetailViewController
             destinationVC.comic = (sender as! ComicModel)
         }
+    }
+}
+
+//MARK: - MBProgressHUD functions
+
+extension ListViewController {
+    private func showLoadingHUD() {
+        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
+      hud.label.text = "Loading..."
+    }
+
+    private func hideLoadingHUD() {
+        MBProgressHUD.hide(for: self.view, animated: true)
     }
 }
 
@@ -85,6 +100,7 @@ extension ListViewController: ComicsManagerDelegate {
     func didUpdateList(_ comicsArray: [ComicModel]) {
         self.comics = comicsArray
         self.tableView.reloadData()
+        hideLoadingHUD()
     }
 }
 
