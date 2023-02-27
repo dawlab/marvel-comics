@@ -25,6 +25,7 @@ iOS app created for display information about Marvel comics using Marvel API.
 # External libraries
 - [SDWebImage](https://github.com/SDWebImage/SDWebImage)
 - [Alamofire](https://github.com/Alamofire/Alamofire)
+- [MBProgressHUD](https://github.com/jdg/MBProgressHUD)
 
 # Resources
 - [Marvel API](https://developer.marvel.com)
