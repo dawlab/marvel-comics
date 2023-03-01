@@ -60,7 +60,6 @@ class ComicsManager {
                 print(error)
             }
         }
-
     }
     
     private func emitLoad() {

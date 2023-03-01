@@ -76,25 +76,22 @@ class DetailViewController: UIViewController {
         customView.addGestureRecognizer(swipeDown)
     }
     
+    private func changeDescMode() {
+        isActive.toggle()
+        customView.isHidden = !isActive
+        smallDescView.isHidden = isActive
+    }
+    
     @objc func handleTap() {
-        isActive = !isActive
-        if isActive {
-            smallDescView.isHidden = true
-            customView.isHidden = false
-        } else {
-            customView.isHidden = true
-            smallDescView.isHidden = false
-        }
+        changeDescMode()
     }
     
     @objc func handleSwipeUp(_ sender: UISwipeGestureRecognizer) {
-        smallDescView.isHidden = true
-        customView.isHidden = false
+        changeDescMode()
     }
     
     @objc func handleSwipeDown(_ sender: UISwipeGestureRecognizer) {
-        customView.isHidden = true
-        smallDescView.isHidden = false
+        changeDescMode()
     }
     
     @IBAction func ClickFindOutMoreButton(_ sender: Any) {

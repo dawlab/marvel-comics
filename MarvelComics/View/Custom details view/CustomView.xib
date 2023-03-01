@@ -46,7 +46,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="12" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jJH-Kd-fqc">
-                    <rect key="frame" x="18" y="93" width="378" height="228"/>
+                    <rect key="frame" x="18" y="93" width="378" height="122"/>
                     <string key="text">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here'</string>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
@@ -59,7 +59,6 @@
                 <constraint firstItem="42g-aU-jL1" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="19" id="2mC-lT-M0x"/>
                 <constraint firstItem="jJH-Kd-fqc" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="18" id="6iG-VB-WLC"/>
                 <constraint firstItem="42g-aU-jL1" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="19" id="H67-CZ-zSD"/>
-                <constraint firstItem="jJH-Kd-fqc" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="KE6-Jz-1V5"/>
                 <constraint firstItem="jJH-Kd-fqc" firstAttribute="top" secondItem="2A5-6J-1ka" secondAttribute="bottom" constant="17" id="Owh-QD-cgw"/>
                 <constraint firstAttribute="trailing" secondItem="42g-aU-jL1" secondAttribute="trailing" constant="19" id="Qsm-DB-nJt"/>
                 <constraint firstItem="42g-aU-jL1" firstAttribute="top" secondItem="SdW-FK-Bza" secondAttribute="bottom" constant="19" id="Ugi-2i-c3P"/>
@@ -68,7 +67,6 @@
                 <constraint firstItem="2A5-6J-1ka" firstAttribute="leading" secondItem="42g-aU-jL1" secondAttribute="leading" id="Zcd-Wl-8GO"/>
                 <constraint firstItem="SdW-FK-Bza" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="7" id="aMD-UV-ZVe"/>
                 <constraint firstItem="SdW-FK-Bza" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="rVr-JC-eG4"/>
-                <constraint firstAttribute="bottom" secondItem="jJH-Kd-fqc" secondAttribute="bottom" constant="34" id="uHp-3K-zhh"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="jJH-Kd-fqc" secondAttribute="trailing" constant="18" id="xJU-1D-TT7"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
