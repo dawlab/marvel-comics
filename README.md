@@ -9,7 +9,6 @@ iOS app created for display information about Marvel comics using Marvel API.
 
 # Code architecture 
 - MVC design pattern 
-- SOLID principles 
 
 # Technologies Used
 - Swift 
