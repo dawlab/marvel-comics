@@ -47,7 +47,7 @@ class ListViewController: UIViewController {
 extension ListViewController {
     private func showLoadingHUD() {
         let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
-      hud.label.text = "Loading..."
+        hud.label.text = "Loading..."
     }
 
     private func hideLoadingHUD() {

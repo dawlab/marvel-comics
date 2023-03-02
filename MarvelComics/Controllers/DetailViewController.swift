@@ -42,18 +42,17 @@ class DetailViewController: UIViewController {
     }
     
     func showData() {
-        if let comicPreview = comic {
-            comicUrl = comicPreview.url
-            // Small view data
-            comicImageView.sd_setImage(with: comicPreview.imageUrl)
-            comicTitle.text = comicPreview.title
-            comicAuthors.text = comicPreview.authors
-            comicDesc.text = comicPreview.description
-            //Full view data
-            customView.title.text = comicPreview.title
-            customView.authors.text = comicPreview.authors
-            customView.desc.text = comicPreview.description
-        }
+        guard let comicPreview = comic else { return }
+        comicUrl = comicPreview.url
+        // Small view data
+        comicImageView.sd_setImage(with: comicPreview.imageUrl)
+        comicTitle.text = comicPreview.title
+        comicAuthors.text = comicPreview.authors
+        comicDesc.text = comicPreview.description
+        //Full view data
+        customView.title.text = comicPreview.title
+        customView.authors.text = comicPreview.authors
+        customView.desc.text = comicPreview.description
     }
     
     func AddGestureRecognizers() {
@@ -95,9 +94,8 @@ class DetailViewController: UIViewController {
     }
     
     @IBAction func ClickFindOutMoreButton(_ sender: Any) {
-        if let url = comicUrl {
-            UIApplication.shared.open(url, options: [:], completionHandler: nil)
-        }
+        guard let url = comicUrl else { return }
+        UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
     
     @IBAction func clickShareButton(_ sender: Any) {
