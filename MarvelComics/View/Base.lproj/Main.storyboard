@@ -22,7 +22,7 @@
                                 <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
                                 <inset key="scrollIndicatorInsets" minX="0.0" minY="20" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CustomCell" rowHeight="219" id="QgL-d2-ijw">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CustomCell" rowHeight="219" id="QgL-d2-ijw" customClass="CustomCell" customModule="MarvelComics" customModuleProvider="target">
                                         <rect key="frame" x="20" y="55.5" width="374" height="219"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="QgL-d2-ijw" id="dFU-e8-DFH" customClass="CustomCell" customModule="MarvelComics" customModuleProvider="target">
@@ -168,16 +168,12 @@
                                     <constraint firstItem="7Db-Lb-8Be" firstAttribute="centerX" secondItem="f6p-n2-OSO" secondAttribute="centerX" id="z6G-Tx-Y5l"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pnz-6Q-Gc5" customClass="CustomView" customModule="MarvelComics" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="369" width="414" height="355"/>
-                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="xKc-f2-BQw"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="cMF-R1-fdI" firstAttribute="trailing" secondItem="xKc-f2-BQw" secondAttribute="trailing" id="GMT-As-ovF"/>
-                            <constraint firstItem="Pnz-6Q-Gc5" firstAttribute="top" secondItem="cMF-R1-fdI" secondAttribute="bottom" constant="-345" id="HRj-tJ-zIH"/>
                             <constraint firstItem="3hs-Wo-Ex0" firstAttribute="top" secondItem="cMF-R1-fdI" secondAttribute="bottom" constant="18" id="Jrh-Q4-0NP"/>
                             <constraint firstItem="cMF-R1-fdI" firstAttribute="bottom" secondItem="xKc-f2-BQw" secondAttribute="bottom" constant="-99" id="Lsq-6h-PvW"/>
                             <constraint firstItem="3hs-Wo-Ex0" firstAttribute="centerX" secondItem="xKc-f2-BQw" secondAttribute="centerX" id="MxI-4x-OyT"/>
@@ -188,9 +184,6 @@
                             <constraint firstItem="3hs-Wo-Ex0" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="xKc-f2-BQw" secondAttribute="leading" id="eGf-ys-Nf4"/>
                             <constraint firstItem="cMF-R1-fdI" firstAttribute="leading" secondItem="xKc-f2-BQw" secondAttribute="leading" id="g7F-II-V1P"/>
                             <constraint firstItem="xKc-f2-BQw" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="3hs-Wo-Ex0" secondAttribute="trailing" id="jm7-zZ-s9B"/>
-                            <constraint firstItem="3hs-Wo-Ex0" firstAttribute="top" secondItem="Pnz-6Q-Gc5" secondAttribute="bottom" constant="8" id="ue9-E6-lPv"/>
-                            <constraint firstItem="Pnz-6Q-Gc5" firstAttribute="leading" secondItem="xKc-f2-BQw" secondAttribute="leading" id="wwI-Ae-PrF"/>
-                            <constraint firstItem="Pnz-6Q-Gc5" firstAttribute="trailing" secondItem="xKc-f2-BQw" secondAttribute="trailing" id="x2W-Td-EFA"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Details" largeTitleDisplayMode="never" id="NPA-Nl-mif">
@@ -205,7 +198,6 @@
                         <outlet property="comicDesc" destination="7Db-Lb-8Be" id="P3k-SB-iZC"/>
                         <outlet property="comicImageView" destination="cMF-R1-fdI" id="cOG-77-vQm"/>
                         <outlet property="comicTitle" destination="xpa-vV-tpc" id="C7b-C2-0pM"/>
-                        <outlet property="customView" destination="Pnz-6Q-Gc5" id="aFU-pS-KsM"/>
                         <outlet property="findOutMoreButton" destination="3hs-Wo-Ex0" id="mdH-hB-NBg"/>
                         <outlet property="grabber" destination="f6p-n2-OSO" id="ZuA-v7-bXM"/>
                         <outlet property="shareButton" destination="kAc-lF-sJu" id="ojn-qF-EwH"/>

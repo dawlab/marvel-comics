@@ -24,7 +24,7 @@ class ListViewController: UIViewController {
         comicsManager.loadData()
         tableView.dataSource = self
         tableView.delegate = self
-        self.tableView.register(UINib(nibName: "CustomCell", bundle: nil), forCellReuseIdentifier: CustomCell.identifier)
+        tableView.register(CustomCell.self)
         showLoadingHUD()
         
         navigationController?.navigationBar.prefersLargeTitles = true
@@ -68,13 +68,14 @@ extension ListViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: CustomCell.identifier, for: indexPath) as? CustomCell else {
+        guard let cell: CustomCell = tableView.dequeue(cellForRowAt: indexPath)
+        else {
             return UITableViewCell()
         }
-        cell.cellImageView.sd_setImage(with: comics[indexPath.section].imageUrl, completed: nil)
+        cell.cellImageView.sd_setImage(with: comics[indexPath.section].imageUrl)
         cell.cellImageView.layer.cornerRadius = 9
         cell.cellImageView.clipsToBounds = true
-        cell.cellImageView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
+//        cell.cellImageView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
         
         cell.cellTitle.text = comics[indexPath.section].title
         cell.cellAuthors.text = comics[indexPath.section].authors

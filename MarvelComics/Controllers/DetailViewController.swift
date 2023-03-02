@@ -19,7 +19,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var findOutMoreButton: UIButton!
     @IBOutlet weak var shareButton: UIBarButtonItem!
     
-    @IBOutlet weak var customView: CustomView!
+    var customView = CustomView()
     
     var comic: ComicModel?
     var comicUrl: URL?
@@ -33,12 +33,23 @@ class DetailViewController: UIViewController {
         showData()
         AddGestureRecognizers()
         prepareSmallDescView()
+        prepareCustomView()
+      
     }
     
     func prepareSmallDescView() {
         smallDescView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         smallDescView.layer.cornerRadius = 25
         grabber.layer.cornerRadius = 5
+    }
+    
+    func prepareCustomView() {
+        view.addSubview(customView)
+        customView.snp.makeConstraints { make in
+            make.bottom.equalTo(findOutMoreButton.snp.top)
+            make.left.right.equalToSuperview()
+            make.height.equalTo(300)
+        }
     }
     
     func showData() {

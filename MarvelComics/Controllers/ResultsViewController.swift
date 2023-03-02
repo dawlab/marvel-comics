@@ -24,7 +24,7 @@ class ResultsViewController: UIViewController {
         comicsManager.loadData()
         searchTableView.dataSource = self
         searchTableView.delegate = self
-        searchTableView.register(UINib(nibName: "CustomCell", bundle: nil), forCellReuseIdentifier: CustomCell.identifier)
+        searchTableView.register(CustomCell.self)
     }
 }
 //MARK: - UITableViewDataSource
@@ -38,13 +38,14 @@ extension ResultsViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: CustomCell.identifier, for: indexPath) as? CustomCell else {
+        guard let cell: CustomCell = tableView.dequeue(cellForRowAt: indexPath)
+        else {
             return UITableViewCell()
         }
-        cell.cellImageView.sd_setImage(with: filteredData[indexPath.section].imageUrl, completed: nil)
+//        cell.cellImageView.sd_setImage(with: filteredData[indexPath.section].imageUrl, completed: nil)
         cell.cellImageView.layer.cornerRadius = 9
         cell.cellImageView.clipsToBounds = true
-        cell.cellImageView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
+//        cell.cellImageView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
 
         cell.cellTitle.text = filteredData[indexPath.section].title
         cell.cellAuthors.text = filteredData[indexPath.section].authors
